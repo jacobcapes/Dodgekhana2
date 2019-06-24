@@ -38,7 +38,56 @@ namespace Dodgekhana2
 
         private void TmrTire_Tick(object sender, EventArgs e)
         {
-
+            area1.Y += speed.Next(5, 11); //move planet1 down the Game panel at a speed between 5 and 10
+            area2.X += speed.Next(5, 11);
+            area3.Y += speed.Next(5, 11);
+            area4.X += speed.Next(5, 11);
+            area5.Y += speed.Next(5, 11);
+            area6.X += speed.Next(5, 11);
+            area7.Y += speed.Next(5, 11);
+            PnlGame.Invalidate();//makes the paint event (PnlGame_Paint) fire to draw the panel
+            if (area1.X > PnlGame.Height)
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                area1.X = 20; //place planet back at top of panel
+            }
+            if (area2.Y > PnlGame.Height)
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                area2.Y = 20; //place planet back at top of panel
+            }
+            if (area3.X > PnlGame.Height)
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                area3.X = 20; //place planet back at top of panel
+            }
+            if (area4.Y > PnlGame.Height)
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                area4.Y = 20; //place planet back at top of panel
+            }
+            if (area5.X > PnlGame.Height)
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                area5.X = 20; //place planet back at top of panel
+            }
+            if (area6.Y > PnlGame.Height)
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                area6.Y = 20; //place planet back at top of panel
+            }
+            if (area7.X > PnlGame.Height)
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                area7.X = 20; //place planet back at top of panel
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

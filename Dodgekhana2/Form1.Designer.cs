@@ -32,6 +32,7 @@
             this.PnlGame = new System.Windows.Forms.Panel();
             this.TmrTire = new System.Windows.Forms.Timer(this.components);
             this.TmrVehicle = new System.Windows.Forms.Timer(this.components);
+            this.LblScore = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // PnlGame
@@ -45,13 +46,27 @@
             // 
             // TmrTire
             // 
+            this.TmrTire.Enabled = true;
             this.TmrTire.Tick += new System.EventHandler(this.TmrTire_Tick);
+            // 
+            // TmrVehicle
+            // 
+            this.TmrVehicle.Enabled = true;
+            // 
+            // LblScore
+            // 
+            this.LblScore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblScore.Location = new System.Drawing.Point(12, 9);
+            this.LblScore.Name = "LblScore";
+            this.LblScore.Size = new System.Drawing.Size(100, 23);
+            this.LblScore.TabIndex = 1;
             // 
             // FrmDodge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 368);
+            this.Controls.Add(this.LblScore);
             this.Controls.Add(this.PnlGame);
             this.Name = "FrmDodge";
             this.Text = "Form1";
@@ -65,6 +80,7 @@
         private System.Windows.Forms.Panel PnlGame;
         private System.Windows.Forms.Timer TmrTire;
         private System.Windows.Forms.Timer TmrVehicle;
+        private System.Windows.Forms.Label LblScore;
     }
 }
 
