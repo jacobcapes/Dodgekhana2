@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Dodgekhana2
 {
-   
+
     public partial class FrmDodge : Form
     {
         Graphics g; // declare the graphics object
@@ -19,14 +19,53 @@ namespace Dodgekhana2
         // Declare the rectangles to display the spaceship and planets in
         Rectangle area, area1, area2, area3, area4, area5, area6, area7;
         int x2 = 50, y2 = 290; // starting position of spaceship
+        int x3 = 50, y5 = 290; // starting position of spaceship
+        int score = 0;
+        int lives = 5;
+
+        // load the spaceship and one planet
+        Image Vehicle = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
+
+        private void LblLives_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        Image Tire = Image.FromFile(Application.StartupPath + @"\Tire.png");
+        bool left, right, up, down;
+        public FrmDodge()
+        {
+            InitializeComponent();
+            area = new Rectangle(x2, y2, 30, 30);//spaceship's rectangle
+            area1 = new Rectangle(x, y, 20, 20);// planet1's rectangle
+            area2 = new Rectangle(x, y + 30, 20, 20);// planet2's rectangle
+            area3 = new Rectangle(x + 100, y, 20, 20);// planet3's rectangle
+            area4 = new Rectangle(x, y + 140, 20, 20);// planet4's rectangle
+            area5 = new Rectangle(x + 200, y, 20, 20);// planet5's rectangle
+            area6 = new Rectangle(x, y + 240, 20, 20);// planet6's rectangle
+            area7 = new Rectangle(x + 300, y, 20, 20);// planet7's rectangle
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+          
+        }
+        private void CheckLives()
+        {
+            if (lives == 0)
+            {
+                TmrTire.Enabled = false;
+                TmrVehicle.Enabled = false;
+                MessageBox.Show("Game Over");
+
+            }
+        }
 
         private void PnlGame_Paint(object sender, PaintEventArgs e)
         {
             //get the methods from the graphic's class to paint on the panel
             g = e.Graphics;
             //use the DrawImage method to draw the spaceship on the panel
-            g.DrawImage(Vehicle, area);
-            //use the DrawImage method to draw the planet on the panel
+            g.DrawImage(Vehicle, area);//use the DrawImage method to draw the planet on the panel
             g.DrawImage(Tire, area1);
             g.DrawImage(Tire, area2);
             g.DrawImage(Tire, area3);
@@ -46,11 +85,22 @@ namespace Dodgekhana2
             area6.X += speed.Next(5, 11);
             area7.Y += speed.Next(5, 11);
             PnlGame.Invalidate();//makes the paint event (PnlGame_Paint) fire to draw the panel
-            if (area1.X > PnlGame.Height)
+            
+            if (area1.IntersectsWith(area))
+            {
+                area1.Y = 20;
+                lives -= 1; // reduce lives by 1
+                            //display the number of lives on the form
+                LblLives.Text = lives.ToString();
+
+                CheckLives();
+            }
+
+            if (area1.Y > PnlGame.Height)
             {
                 score += 1; // add 1 to score
                 LblScore.Text = score.ToString();//display score on the form
-                area1.X = 20; //place planet back at top of panel
+                area1.Y = 20; //place planet back at top of panel
             }
             if (area2.Y > PnlGame.Height)
             {
@@ -58,11 +108,11 @@ namespace Dodgekhana2
                 LblScore.Text = score.ToString();//display score on the form
                 area2.Y = 20; //place planet back at top of panel
             }
-            if (area3.X > PnlGame.Height)
+            if (area3.Y > PnlGame.Height)
             {
                 score += 1; // add 1 to score
                 LblScore.Text = score.ToString();//display score on the form
-                area3.X = 20; //place planet back at top of panel
+                area3.Y = 20; //place planet back at top of panel
             }
             if (area4.Y > PnlGame.Height)
             {
@@ -70,11 +120,11 @@ namespace Dodgekhana2
                 LblScore.Text = score.ToString();//display score on the form
                 area4.Y = 20; //place planet back at top of panel
             }
-            if (area5.X > PnlGame.Height)
+            if (area5.Y > PnlGame.Height)
             {
                 score += 1; // add 1 to score
                 LblScore.Text = score.ToString();//display score on the form
-                area5.X = 20; //place planet back at top of panel
+                area5.Y = 20; //place planet back at top of panel
             }
             if (area6.Y > PnlGame.Height)
             {
@@ -82,43 +132,95 @@ namespace Dodgekhana2
                 LblScore.Text = score.ToString();//display score on the form
                 area6.Y = 20; //place planet back at top of panel
             }
-            if (area7.X > PnlGame.Height)
+            if (area7.Y > PnlGame.Height)
             {
                 score += 1; // add 1 to score
                 LblScore.Text = score.ToString();//display score on the form
-                area7.X = 20; //place planet back at top of panel
+                area7.Y = 20; //place planet back at top of panel
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void FrmDodge_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyData == Keys.Left) { left = false; }
+            if (e.KeyData == Keys.Right) { right = false; }
+        }
+
+        private void FrmDodge_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Left) { left = true; }
+            if (e.KeyData == Keys.Right) { right = true; }
+        }
+
+        private void TmrVehicle_Tick(object sender, EventArgs e)
+        {
+            if (left) //if left arrow pressed
+                if (area.X < 10)//check to see if spaceship is within 10 of left side
+                {
+                    area.X = 10;//if it is within 10 from side bounce it to 10 away
+                }
+                else
+                {
+                    area.X -= 5; //else move 5 to the left
+
+                }
+            if (right) //if right arrow pressed
+            {
+                if (area.X > PnlGame.Width - 40)// is spaceship within 40 of right side of panel
+                {
+                    area.X = PnlGame.Width - 40;
+                }
+                else
+                {
+                    area.X += 5;
+                }
+            }
+            //if spaceship collides with any planet lose a life and move plane to the top of the panel
+            if (area.IntersectsWith(area1))
+            {
+                lives -= 1; // reduce lives by 1
+                area1.Y = 20; //move planet to top of panel
+                CheckLives();
+            }
+            if (area.IntersectsWith(area2))
+            {
+                lives -= 1; // reduce lives by 1
+                area2.Y = 20; //move planet to top of panel
+                CheckLives();
+            }
+            if (area.IntersectsWith(area3))
+            {
+                lives -= 1; // reduce lives by 1
+                area3.Y = 20; //move planet to top of panel
+                CheckLives();
+            }
+            if (area.IntersectsWith(area4))
+            {
+                lives -= 1; // reduce lives by 1
+                area4.Y = 20; //move planet to top of panel
+                CheckLives();
+            }
+            if (area.IntersectsWith(area5))
+            {
+                lives -= 1; // reduce lives by 1
+                area5.Y = 20; //move planet to top of panel
+                CheckLives();
+            }
+            if (area.IntersectsWith(area6))
+            {
+                lives -= 1; // reduce lives by 1
+                area6.Y = 20; //move planet to top of panel
+                CheckLives();
+            }
+            if (area.IntersectsWith(area7))
+            {
+                lives -= 1; // reduce lives by 1
+                area7.Y = 20; //move planet to top of panel
+                CheckLives();
+            }
+        }
 
         }
 
-        int x3 = 50, y5 = 290; // starting position of spaceship
-        int score = 0;
-        int lives = 5;
-
-        // load the spaceship and one planet
-        Image Vehicle = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
-        Image Tire = Image.FromFile(Application.StartupPath + @"\Tire.png");
-        bool left, right, up, down;
-        public FrmDodge()
-        {
-            InitializeComponent();
-            area = new Rectangle(x2, y2, 30, 30);//spaceship's rectangle
-            area1 = new Rectangle(x, y, 20, 20);// planet1's rectangle
-            area2 = new Rectangle(x + 50, y, 20, 20);// planet2's rectangle
-            area3 = new Rectangle(x + 100, y, 20, 20);// planet3's rectangle
-            area4 = new Rectangle(x + 150, y, 20, 20);// planet4's rectangle
-            area5 = new Rectangle(x + 200, y, 20, 20);// planet5's rectangle
-            area6 = new Rectangle(x + 250, y, 20, 20);// planet6's rectangle
-            area7 = new Rectangle(x + 300, y, 20, 20);// planet7's rectangle
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
-}
+
