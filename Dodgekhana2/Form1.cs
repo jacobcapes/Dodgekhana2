@@ -102,11 +102,11 @@ namespace Dodgekhana2
                 LblScore.Text = score.ToString();//display score on the form
                 area1.Y = 20; //place planet back at top of panel
             }
-            if (area2.Y > PnlGame.Height)
+            if (area2.X > PnlGame.Width)
             {
                 score += 1; // add 1 to score
                 LblScore.Text = score.ToString();//display score on the form
-                area2.Y = 20; //place planet back at top of panel
+                area2.X = 20; //place planet back at top of panel
             }
             if (area3.Y > PnlGame.Height)
             {
@@ -114,11 +114,11 @@ namespace Dodgekhana2
                 LblScore.Text = score.ToString();//display score on the form
                 area3.Y = 20; //place planet back at top of panel
             }
-            if (area4.Y > PnlGame.Height)
+            if (area4.X > PnlGame.Width)
             {
                 score += 1; // add 1 to score
                 LblScore.Text = score.ToString();//display score on the form
-                area4.Y = 20; //place planet back at top of panel
+                area4.X = 20; //place planet back at top of panel
             }
             if (area5.Y > PnlGame.Height)
             {
@@ -126,11 +126,11 @@ namespace Dodgekhana2
                 LblScore.Text = score.ToString();//display score on the form
                 area5.Y = 20; //place planet back at top of panel
             }
-            if (area6.Y > PnlGame.Height)
+            if (area6.X > PnlGame.Width)
             {
                 score += 1; // add 1 to score
                 LblScore.Text = score.ToString();//display score on the form
-                area6.Y = 20; //place planet back at top of panel
+                area6.X = 20; //place planet back at top of panel
             }
             if (area7.Y > PnlGame.Height)
             {
@@ -220,7 +220,7 @@ namespace Dodgekhana2
             }
         }
 
-        }
-
     }
+
+}
 
