@@ -144,12 +144,16 @@ namespace Dodgekhana2
         {
             if (e.KeyData == Keys.Left) { left = false; }
             if (e.KeyData == Keys.Right) { right = false; }
+            if (e.KeyData == Keys.Up) { up = false; }
+            if (e.KeyData == Keys.Down) { down = false; }
         }
 
         private void FrmDodge_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Left) { left = true; }
             if (e.KeyData == Keys.Right) { right = true; }
+            if (e.KeyData == Keys.Up) { up = true; }
+            if (e.KeyData == Keys.Down) { down = true; }
         }
 
         private void TmrVehicle_Tick(object sender, EventArgs e)
@@ -173,6 +177,28 @@ namespace Dodgekhana2
                 else
                 {
                     area.X += 5;
+                }
+            }
+            if (up) //if right arrow pressed
+            {
+                if (area.X > PnlGame.Height - 40)// is spaceship within 40 of right side of panel
+                {
+                    area.Y = PnlGame.Height - 40;
+                }
+                else
+                {
+                    area.Y -= 5;
+                }
+            }
+            if (down) //if right arrow pressed
+            {
+                if (area.Y > PnlGame.Height - 40)// is spaceship within 40 of right side of panel
+                {
+                    area.Y = PnlGame.Height - 40;
+                }
+                else
+                {
+                    area.Y += 5;
                 }
             }
             //if spaceship collides with any planet lose a life and move plane to the top of the panel
