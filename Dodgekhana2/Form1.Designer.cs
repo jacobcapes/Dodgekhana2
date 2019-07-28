@@ -48,6 +48,7 @@
             // TmrTire
             // 
             this.TmrTire.Enabled = true;
+            this.TmrTire.Interval = 50;
             this.TmrTire.Tick += new System.EventHandler(this.TmrTire_Tick);
             // 
             // TmrVehicle

@@ -13,15 +13,19 @@ namespace Dodgekhana2
 
     public partial class FrmDodge : Form
     {
+        Rectangle recPoint = new Rectangle(0, 0, 50, 65);
+        Image Point = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
         Graphics g; // declare the graphics object
         int x = 20, y = 20;// starting position of tire
         Random speed = new Random();
         // Declare the rectangles to display the spaceship and planets in
-        Rectangle area, area1, area2, area3, area4, area5, area6, area7;
-        int x2 = 50, y2 = 290; // starting position of spaceship
+        Rectangle area, area1, area2, area3, area4, area5, area6, area7, point;
+        int x2 = 0, 375 y2 = 290; // starting position of spaceship
         int x3 = 50, y5 = 290; // starting position of spaceship
         int score = 0;
         int lives = 5;
+        int
+        Random rand = new Random();
 
         // load the spaceship and one planet
         Image Vehicle = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
@@ -36,14 +40,15 @@ namespace Dodgekhana2
         public FrmDodge()
         {
             InitializeComponent();
-            area = new Rectangle(x2, y2, 30, 30);//spaceship's rectangle
-            area1 = new Rectangle(x, y, 20, 20);// planet1's rectangle
-            area2 = new Rectangle(x, y + 30, 20, 20);// planet2's rectangle
-            area3 = new Rectangle(x + 100, y, 20, 20);// planet3's rectangle
-            area4 = new Rectangle(x, y + 140, 20, 20);// planet4's rectangle
-            area5 = new Rectangle(x + 200, y, 20, 20);// planet5's rectangle
-            area6 = new Rectangle(x, y + 240, 20, 20);// planet6's rectangle
-            area7 = new Rectangle(x + 300, y, 20, 20);// planet7's rectangle
+            area = new Rectangle(x2, y2, 30, 30);
+            area1 = new Rectangle(x, y, 20, 20);
+            area2 = new Rectangle(x, y + 30, 20, 20);
+            area3 = new Rectangle(x + 100, y, 20, 20);
+            area4 = new Rectangle(x, y + 140, 20, 20);
+            area5 = new Rectangle(x + 200, y, 20, 20);
+            area6 = new Rectangle(x, y + 240, 20, 20);
+            area7 = new Rectangle(x + 300, y, 20, 20);
+           recPoint = new Rectangle(x + 300, y, 20, 20);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -73,17 +78,18 @@ namespace Dodgekhana2
             g.DrawImage(Tire, area5);
             g.DrawImage(Tire, area6);
             g.DrawImage(Tire, area7);
+            g.DrawImage(Point, recPoint);
         }
 
         private void TmrTire_Tick(object sender, EventArgs e)
         {
-            area1.Y += speed.Next(5, 11); //move planet1 down the Game panel at a speed between 5 and 10
-            area2.X += speed.Next(5, 11);
-            area3.Y += speed.Next(5, 11);
-            area4.X += speed.Next(5, 11);
-            area5.Y += speed.Next(5, 11);
-            area6.X += speed.Next(5, 11);
-            area7.Y += speed.Next(5, 11);
+            area1.Y += speed.Next(3, 9); //move planet1 down the Game panel at a speed between 5 and 10
+            area2.X += speed.Next(3, 9);
+            area3.Y += speed.Next(3, 9);
+            area4.X += speed.Next(3, 9);
+            area5.Y += speed.Next(3, 9);
+            area6.X += speed.Next(3, 9);
+            area7.Y += speed.Next(3, 9);
             PnlGame.Invalidate();//makes the paint event (PnlGame_Paint) fire to draw the panel
             
             if (area1.IntersectsWith(area))
@@ -137,6 +143,12 @@ namespace Dodgekhana2
                 score += 1; // add 1 to score
                 LblScore.Text = score.ToString();//display score on the form
                 area7.Y = 20; //place planet back at top of panel
+            }
+            if (area.IntersectsWith(recPoint))
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                recPoint.Y = (20, 320); //place planet back at top of panel
             }
         }
 
