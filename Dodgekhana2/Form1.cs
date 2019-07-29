@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Dodgekhana2
 {
@@ -37,6 +38,7 @@ namespace Dodgekhana2
         public FrmDodge()
         {
             InitializeComponent();
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, PnlGame, new object[] { true });
             area = new Rectangle(x2, y2, 30, 30);
             area1 = new Rectangle(x, y, 20, 20);
             area2 = new Rectangle(x, y + 30, 20, 20);
@@ -76,7 +78,7 @@ namespace Dodgekhana2
             g.DrawImage(Tire, area6);
             g.DrawImage(Tire, area7);
             g.DrawImage(Point, recPoint);
-         
+
         }
 
         private void TmrTire_Tick(object sender, EventArgs e)
@@ -88,8 +90,7 @@ namespace Dodgekhana2
             area5.Y += speed.Next(3, 9);
             area6.X += speed.Next(3, 9);
             area7.Y += speed.Next(3, 9);
-            PnlGame.Invalidate();//makes the paint event (PnlGame_Paint) fire to draw the panel
-            
+            PnlGame.Invalidate();
             if (area1.IntersectsWith(area))
             {
                 area1.Y = 20;
