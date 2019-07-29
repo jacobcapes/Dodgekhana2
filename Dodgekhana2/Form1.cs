@@ -16,17 +16,14 @@ namespace Dodgekhana2
         Rectangle recPoint = new Rectangle(0, 0, 50, 65);
         Image Point = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
         Graphics g; // declare the graphics object
-        int x = 20, y = 20;// starting position of tire
+        Random rand = new Random();
         Random speed = new Random();
+        int x = 20, y = 20;// starting position of tire
+        int x2 = 50, y2 = 290; // starting position of spaceship
         // Declare the rectangles to display the spaceship and planets in
         Rectangle area, area1, area2, area3, area4, area5, area6, area7, point;
-        int x2 = 0, 375 y2 = 290; // starting position of spaceship
-        int x3 = 50, y5 = 290; // starting position of spaceship
         int score = 0;
         int lives = 5;
-        int
-        Random rand = new Random();
-
         // load the spaceship and one planet
         Image Vehicle = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
 
@@ -79,6 +76,7 @@ namespace Dodgekhana2
             g.DrawImage(Tire, area6);
             g.DrawImage(Tire, area7);
             g.DrawImage(Point, recPoint);
+         
         }
 
         private void TmrTire_Tick(object sender, EventArgs e)
@@ -144,12 +142,6 @@ namespace Dodgekhana2
                 LblScore.Text = score.ToString();//display score on the form
                 area7.Y = 20; //place planet back at top of panel
             }
-            if (area.IntersectsWith(recPoint))
-            {
-                score += 1; // add 1 to score
-                LblScore.Text = score.ToString();//display score on the form
-                recPoint.Y = (20, 320); //place planet back at top of panel
-            }
         }
 
         private void FrmDodge_KeyUp(object sender, KeyEventArgs e)
@@ -171,9 +163,9 @@ namespace Dodgekhana2
         private void TmrVehicle_Tick(object sender, EventArgs e)
         {
             if (left) //if left arrow pressed
-                if (area.X < 10)//check to see if spaceship is within 10 of left side
+                if (area.X < 0)//check to see if spaceship is within 10 of left side
                 {
-                    area.X = 10;//if it is within 10 from side bounce it to 10 away
+                    area.X = 0;//if it is within 10 from side bounce it to 10 away
                 }
                 else
                 {
@@ -182,9 +174,9 @@ namespace Dodgekhana2
                 }
             if (right) //if right arrow pressed
             {
-                if (area.X > PnlGame.Width - 40)// is spaceship within 40 of right side of panel
+                if (area.X > PnlGame.Width - 0)// is spaceship within 40 of right side of panel
                 {
-                    area.X = PnlGame.Width - 40;
+                    area.X = PnlGame.Width - 0;
                 }
                 else
                 {
@@ -193,9 +185,9 @@ namespace Dodgekhana2
             }
             if (up) //if right arrow pressed
             {
-                if (area.X > PnlGame.Height - 40)// is spaceship within 40 of right side of panel
+                if (area.X > PnlGame.Height - 0)// is spaceship within 40 of right side of panel
                 {
-                    area.Y = PnlGame.Height - 40;
+                    area.Y = PnlGame.Height - 0;
                 }
                 else
                 {
@@ -204,9 +196,9 @@ namespace Dodgekhana2
             }
             if (down) //if right arrow pressed
             {
-                if (area.Y > PnlGame.Height - 40)// is spaceship within 40 of right side of panel
+                if (area.Y > PnlGame.Height - 0)// is spaceship within 40 of right side of panel
                 {
-                    area.Y = PnlGame.Height - 40;
+                    area.Y = PnlGame.Height - 0;
                 }
                 else
                 {
@@ -255,6 +247,13 @@ namespace Dodgekhana2
                 lives -= 1; // reduce lives by 1
                 area7.Y = 20; //move planet to top of panel
                 CheckLives();
+            }
+            if (area.IntersectsWith(recPoint))
+            {
+                score += 1; // add 1 to score
+                LblScore.Text = score.ToString();//display score on the form
+                recPoint.X = rand.Next(240);
+                recPoint.Y = rand.Next(240);
             }
         }
 
