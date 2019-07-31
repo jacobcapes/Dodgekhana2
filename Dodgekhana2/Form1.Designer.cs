@@ -54,6 +54,7 @@
             // TmrVehicle
             // 
             this.TmrVehicle.Enabled = true;
+            this.TmrVehicle.Interval = 50;
             this.TmrVehicle.Tick += new System.EventHandler(this.TmrVehicle_Tick);
             // 
             // LblScore
@@ -71,6 +72,7 @@
             this.LblLives.Name = "LblLives";
             this.LblLives.Size = new System.Drawing.Size(100, 23);
             this.LblLives.TabIndex = 3;
+            this.LblLives.Text = "5";
             this.LblLives.Click += new System.EventHandler(this.LblLives_Click);
             // 
             // FrmDodge
