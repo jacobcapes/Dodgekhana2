@@ -36,8 +36,9 @@
             this.LblLives = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,14 +47,14 @@
             this.PnlGame.BackColor = System.Drawing.Color.Gray;
             this.PnlGame.Location = new System.Drawing.Point(2, 41);
             this.PnlGame.Name = "PnlGame";
-            this.PnlGame.Size = new System.Drawing.Size(375, 325);
+            this.PnlGame.Size = new System.Drawing.Size(432, 325);
             this.PnlGame.TabIndex = 0;
             this.PnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlGame_Paint);
             // 
             // TmrTire
             // 
             this.TmrTire.Enabled = true;
-            this.TmrTire.Interval = 50;
+            this.TmrTire.Interval = 75;
             this.TmrTire.Tick += new System.EventHandler(this.TmrTire_Tick);
             // 
             // TmrVehicle
@@ -65,26 +66,29 @@
             // LblScore
             // 
             this.LblScore.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.LblScore.Location = new System.Drawing.Point(194, 9);
+            this.LblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblScore.Location = new System.Drawing.Point(287, 12);
             this.LblScore.Name = "LblScore";
-            this.LblScore.Size = new System.Drawing.Size(100, 23);
+            this.LblScore.Size = new System.Drawing.Size(47, 23);
             this.LblScore.TabIndex = 1;
+            this.LblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LblLives
             // 
-            this.LblLives.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LblLives.Location = new System.Drawing.Point(398, 163);
+            this.LblLives.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.LblLives.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblLives.Location = new System.Drawing.Point(394, 12);
             this.LblLives.Name = "LblLives";
-            this.LblLives.Size = new System.Drawing.Size(26, 22);
+            this.LblLives.Size = new System.Drawing.Size(40, 23);
             this.LblLives.TabIndex = 3;
             this.LblLives.Text = "5";
+            this.LblLives.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LblLives.Click += new System.EventHandler(this.LblLives_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startToolStripMenuItem,
-            this.stopToolStripMenuItem,
             this.restartToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -100,14 +104,6 @@
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
-            // stopToolStripMenuItem
-            // 
-            this.stopToolStripMenuItem.BackColor = System.Drawing.Color.Crimson;
-            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.stopToolStripMenuItem.Text = "Pause";
-            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
-            // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.BackColor = System.Drawing.Color.Orange;
@@ -116,11 +112,35 @@
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Broadway", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(211, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 22);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Score";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Broadway", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(340, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 15);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Lives";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // FrmDodge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 368);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.LblScore);
             this.Controls.Add(this.LblLives);
             this.Controls.Add(this.PnlGame);
@@ -147,8 +167,9 @@
         private System.Windows.Forms.Label LblLives;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
     }
 }
 

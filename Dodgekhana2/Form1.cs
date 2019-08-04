@@ -69,6 +69,11 @@ namespace Dodgekhana2
 
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         bool left, right, up, down;
         public FrmDodge()
         {
@@ -155,6 +160,34 @@ namespace Dodgekhana2
             if (area7.Y > PnlGame.Height)
             {
                 area7.Y = 0; //place planet back at top of panel
+            }
+            if (score >= 2)
+            {
+                TmrTire.Interval = 73;
+            }
+            if (score >= 4)
+            {
+                TmrTire.Interval = 71;
+            }
+            if (score >= 6)
+            {
+                TmrTire.Interval = ;
+            }
+            if (score >= 5
+            {
+                TmrTire.Interval = 50;
+            }
+            if (score >= 5)
+            {
+                TmrTire.Interval = 50;
+            }
+            if (score >= 5)
+            {
+                TmrTire.Interval = 50;
+            }
+            if (score >= 5)
+            {
+                TmrTire.Interval = 50;
             }
         }
 
