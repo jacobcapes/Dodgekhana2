@@ -19,7 +19,7 @@ namespace Dodgekhana2
         Graphics g; // declare the graphics object
         Random rand = new Random();
         Random speed = new Random();
-        int x = 20, y = 20;// starting position of tire
+        int X = 20, Y = 20;// starting position of tire
         int x2 = 50, y2 = 290; // starting position of spaceship
         // Declare the rectangles to display the spaceship and planets in
         Rectangle area, area1, area2, area3, area4, area5, area6, area7;
@@ -34,20 +34,55 @@ namespace Dodgekhana2
         }
 
         Image Tire = Image.FromFile(Application.StartupPath + @"\Tire.png");
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TmrTire.Enabled = false;
+            TmrVehicle.Enabled = false;
+        }
+
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LblScore.Text = score.ToString();
+            lives = int.Parse(LblLives.Text);//pass lives entered in textbox to lives variable
+            TmrTire.Enabled = true;
+            TmrVehicle.Enabled = true;
+        }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            score = 0;
+            lives = 5;
+            LblLives.Text = "5";
+            LblScore.Text = score.ToString();
+            lives = int.Parse(LblLives.Text);//pass lives entered in textbox to lives variable
+            TmrTire.Enabled = true;
+            TmrVehicle.Enabled = true;
+            area1.Y = 20; //place planet back at top of panel
+            area2.X = 20; //place planet back at top of panel
+            area3.Y = 20; //place planet back at top of panel
+            area4.X = 20; //place planet back at top of panel
+            area5.Y = 20; //place planet back at top of panel
+            area6.X = 20; //place planet back at top of panel
+            area7.Y = 20; //place planet back at top of panel
+
+
+        }
+
         bool left, right, up, down;
         public FrmDodge()
         {
             InitializeComponent();
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, PnlGame, new object[] { true });
             area = new Rectangle(x2, y2, 30, 30);
-            area1 = new Rectangle(x, y, 20, 20);
-            area2 = new Rectangle(x, y + 30, 20, 20);
-            area3 = new Rectangle(x + 100, y, 20, 20);
-            area4 = new Rectangle(x, y + 140, 20, 20);
-            area5 = new Rectangle(x + 200, y, 20, 20);
-            area6 = new Rectangle(x, y + 240, 20, 20);
-            area7 = new Rectangle(x + 300, y, 20, 20);
-           recPoint = new Rectangle(x + 300, y, 20, 20);
+            area1 = new Rectangle(X, Y, 20, 20);
+            area2 = new Rectangle(X, Y + 30, 20, 20);
+            area3 = new Rectangle(X + 100, Y, 20, 20);
+            area4 = new Rectangle(X, Y + 140, 20, 20);
+            area5 = new Rectangle(X + 200, Y, 20, 20);
+            area6 = new Rectangle(X, Y + 240, 20, 20);
+            area7 = new Rectangle(X + 300, Y, 20, 20);
+           recPoint = new Rectangle(X + 300, Y, 20, 20);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -95,31 +130,31 @@ namespace Dodgekhana2
 
             if (area1.Y > PnlGame.Height)
             {
-                area1.Y = 20; //place planet back at top of panel
+                area1.Y = 0; //place planet back at top of panel
             }
             if (area2.X > PnlGame.Width)
             {
-                area2.X = 20; //place planet back at top of panel
+                area2.X = 0; //place planet back at top of panel
             }
             if (area3.Y > PnlGame.Height)
             {
-                area3.Y = 20; //place planet back at top of panel
+                area3.Y = 0; //place planet back at top of panel
             }
             if (area4.X > PnlGame.Width)
             {
-                area4.X = 20; //place planet back at top of panel
+                area4.X = 0; //place planet back at top of panel
             }
             if (area5.Y > PnlGame.Height)
             {
-                area5.Y = 20; //place planet back at top of panel
+                area5.Y = 0; //place planet back at top of panel
             }
             if (area6.X > PnlGame.Width)
             {
-                area6.X = 20; //place planet back at top of panel
+                area6.X = 0; //place planet back at top of panel
             }
             if (area7.Y > PnlGame.Height)
             {
-                area7.Y = 20; //place planet back at top of panel
+                area7.Y = 0; //place planet back at top of panel
             }
         }
 
@@ -187,44 +222,47 @@ namespace Dodgekhana2
             //if spaceship collides with any planet lose a life and move plane to the top of the panel
             if (area.IntersectsWith(area1))
             {
+                area1.Y = 0; //move planet to top of panel
                 lives -= 1; // reduce lives by 1
-                area1.Y = 20; //move planet to top of panel
                 CheckLives();
             }
             if (area.IntersectsWith(area2))
             {
+                area2.X = 0; //move planet to top of panel
                 lives -= 1; // reduce lives by 1
-                area2.Y = 20; //move planet to top of panel
                 CheckLives();
             }
             if (area.IntersectsWith(area3))
             {
+                area3.Y = 0; //move planet to top of panel
                 lives -= 1; // reduce lives by 1
-                area3.Y = 20; //move planet to top of panel
+             
                 CheckLives();
             }
             if (area.IntersectsWith(area4))
             {
+                area4.X = 0; //move planet to top of panel
                 lives -= 1; // reduce lives by 1
-                area4.Y = 20; //move planet to top of panel
+
                 CheckLives();
             }
             if (area.IntersectsWith(area5))
             {
+                area5.Y = 0; //move planet to top of panel
                 lives -= 1; // reduce lives by 1
-                area5.Y = 20; //move planet to top of panel
+      
                 CheckLives();
             }
             if (area.IntersectsWith(area6))
             {
                 lives -= 1; // reduce lives by 1
-                area6.Y = 20; //move planet to top of panel
+                area6.X = 0; //move planet to top of panel
                 CheckLives();
             }
             if (area.IntersectsWith(area7))
             {
+                area7.Y = 0; //move planet to top of panel
                 lives -= 1; // reduce lives by 1
-                area7.Y = 20; //move planet to top of panel
                 CheckLives();
             }
             if (area.IntersectsWith(recPoint))
