@@ -33,12 +33,14 @@
             this.TmrTire = new System.Windows.Forms.Timer(this.components);
             this.TmrVehicle = new System.Windows.Forms.Timer(this.components);
             this.LblScore = new System.Windows.Forms.Label();
-            this.LblLives = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.LblLives = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,13 +55,11 @@
             // 
             // TmrTire
             // 
-            this.TmrTire.Enabled = true;
             this.TmrTire.Interval = 75;
             this.TmrTire.Tick += new System.EventHandler(this.TmrTire_Tick);
             // 
             // TmrVehicle
             // 
-            this.TmrVehicle.Enabled = true;
             this.TmrVehicle.Interval = 50;
             this.TmrVehicle.Tick += new System.EventHandler(this.TmrVehicle_Tick);
             // 
@@ -72,18 +72,6 @@
             this.LblScore.Size = new System.Drawing.Size(47, 23);
             this.LblScore.TabIndex = 1;
             this.LblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblLives
-            // 
-            this.LblLives.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.LblLives.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblLives.Location = new System.Drawing.Point(394, 12);
-            this.LblLives.Name = "LblLives";
-            this.LblLives.Size = new System.Drawing.Size(40, 23);
-            this.LblLives.TabIndex = 3;
-            this.LblLives.Text = "5";
-            this.LblLives.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LblLives.Click += new System.EventHandler(this.LblLives_Click);
             // 
             // menuStrip1
             // 
@@ -134,20 +122,51 @@
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Broadway", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(108, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 22);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Name";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(169, 15);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(55, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // LblLives
+            // 
+            this.LblLives.Location = new System.Drawing.Point(394, 15);
+            this.LblLives.Name = "LblLives";
+            this.LblLives.Size = new System.Drawing.Size(30, 20);
+            this.LblLives.TabIndex = 9;
+            this.LblLives.TextChanged += new System.EventHandler(this.LblLives_TextChanged);
+            this.LblLives.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LblLives_KeyPress);
+            // 
             // FrmDodge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 368);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.LblLives);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LblScore);
-            this.Controls.Add(this.LblLives);
             this.Controls.Add(this.PnlGame);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmDodge";
-            this.Text = "Form1";
+            this.Text = "Gymkhana";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDodge_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmDodge_KeyUp);
@@ -164,12 +183,14 @@
         private System.Windows.Forms.Timer TmrTire;
         private System.Windows.Forms.Timer TmrVehicle;
         private System.Windows.Forms.Label LblScore;
-        private System.Windows.Forms.Label LblLives;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox LblLives;
     }
 }
 

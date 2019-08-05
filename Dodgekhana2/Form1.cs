@@ -74,6 +74,66 @@ namespace Dodgekhana2
 
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar > 1 && e.KeyChar < 222)//A, B, C or D entered
+            {
+
+                if (e.KeyChar > 12 && e.KeyChar < 14)//A, B, C or D entered
+                {
+                    textBox1.Enabled = false;//deny access to textbox when program runs
+                    LblLives.Focus();//focus on TxtLives
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter A, B, C or D Only", "Error");
+                //event handler is set to true, user input is suppressed and not reflected in the text box
+                e.Handled = true;
+                LblLives.Focus();
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string context = textBox1.Text;
+          
+            //for loop checks for letters as characters are entered
+          
+
+            
+
+            // if not a letter clear the textbox and focus on it
+            // to enter name again
+            
+        }
+
+        private void LblLives_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblLives_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar > 48 && e.KeyChar < 54)// entered 1, 2, 3,4 or 5
+            {
+                LblLives.Enabled = false;// stop player entering lives after game has started
+                startToolStripMenuItem.Enabled = true;//enable player to click Start to strat game
+
+            }
+            else// didn't enter 1, 2, 3, 4 or 5
+            {
+                MessageBox.Show("Please enter Numbers 1 to 5 only", "Error");
+                e.Handled = true;
+                LblLives.Focus();
+            }
+        }
+
         bool left, right, up, down;
         public FrmDodge()
         {
@@ -161,33 +221,33 @@ namespace Dodgekhana2
             {
                 area7.Y = 0; //place planet back at top of panel
             }
-            if (score >= 2)
-            {
-                TmrTire.Interval = 73;
-            }
-            if (score >= 4)
-            {
-                TmrTire.Interval = 71;
-            }
-            if (score >= 6)
-            {
-                TmrTire.Interval = ;
-            }
-            if (score >= 5
-            {
-                TmrTire.Interval = 50;
-            }
             if (score >= 5)
             {
-                TmrTire.Interval = 50;
+                TmrTire.Interval = 70;
             }
-            if (score >= 5)
+            if (score >= 7)
+            {
+                TmrTire.Interval = 65;
+            }
+            if (score >= 10)
+            {
+                TmrTire.Interval = 60;
+            }
+            if (score >= 13)
+            {
+                TmrTire.Interval = 55;
+            }
+            if (score >= 15)
             {
                 TmrTire.Interval = 50;
             }
-            if (score >= 5)
+            if (score >= 20)
             {
-                TmrTire.Interval = 50;
+                TmrTire.Interval = 40;
+            }
+            if (score >= 30)
+            {
+                TmrTire.Interval = 30;
             }
         }
 
