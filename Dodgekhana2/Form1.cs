@@ -43,10 +43,22 @@ namespace Dodgekhana2
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
+           
             LblScore.Text = score.ToString();
             lives = int.Parse(LblLives.Text);//pass lives entered in textbox to lives variable
             TmrTire.Enabled = true;
             TmrVehicle.Enabled = true;
+            startToolStripMenuItem.Visible = false;
+            area.Y = 290;
+            area.X = 50;
+            area1.Y = 20; //place planet back at top of panel
+            area2.X = 20; //place planet back at top of panel
+            area3.Y = 20; //place planet back at top of panel
+            area4.X = 20; //place planet back at top of panel
+            area5.Y = 20; //place planet back at top of panel
+            area6.X = 20; //place planet back at top of panel
+            area7.Y = 20; //place planet back at top of panel
         }
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,6 +70,7 @@ namespace Dodgekhana2
             lives = int.Parse(LblLives.Text);//pass lives entered in textbox to lives variable
             TmrTire.Enabled = true;
             TmrVehicle.Enabled = true;
+           
             area1.Y = 20; //place planet back at top of panel
             area2.X = 20; //place planet back at top of panel
             area3.Y = 20; //place planet back at top of panel
@@ -88,6 +101,7 @@ namespace Dodgekhana2
                 {
                     textBox1.Enabled = false;//deny access to textbox when program runs
                     LblLives.Focus();//focus on TxtLives
+                   
                 }
             }
             else
@@ -124,6 +138,7 @@ namespace Dodgekhana2
             {
                 LblLives.Enabled = false;// stop player entering lives after game has started
                 startToolStripMenuItem.Enabled = true;//enable player to click Start to strat game
+                startToolStripMenuItem.Visible = true;
 
             }
             else// didn't enter 1, 2, 3, 4 or 5
@@ -151,16 +166,35 @@ namespace Dodgekhana2
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-          
+            MessageBox.Show("Use the arrow keys to move your vehicle. \n Don't get hit by the tyres! \n Every oil can you collect scores a point! \n If a tyre hits your vehicle a life is lost!", "Game Instructions");
+            textBox1.Focus();
+
         }
         private void CheckLives()
         {
             LblLives.Text = lives.ToString();//show lives on form
             if (lives == 0)
             {
+                
+                left = false;
+                right = false;
+                up = false;
+                down = false;
+                LblLives.Enabled = true;
                 TmrTire.Enabled = false;
                 TmrVehicle.Enabled = false;
-                MessageBox.Show("Game Over");
+              string message = "Would you like to play again?";
+                string title = "Game Over";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(message, title, buttons);
+                if (result == DialogResult.Yes)
+                {
+                    LblLives.Focus();
+                }
+                else
+                {
+                    // Do somethi
+                }
 
             }
         }
@@ -170,6 +204,7 @@ namespace Dodgekhana2
             //get the methods from the graphic's class to paint on the panel
             g = e.Graphics;
             //use the DrawImage method to draw the spaceship on the panel
+            g.DrawImage(Point, recPoint);
             g.DrawImage(Vehicle, area);//use the DrawImage method to draw the planet on the panel
             g.DrawImage(Tire, area1);
             g.DrawImage(Tire, area2);
@@ -178,7 +213,7 @@ namespace Dodgekhana2
             g.DrawImage(Tire, area5);
             g.DrawImage(Tire, area6);
             g.DrawImage(Tire, area7);
-            g.DrawImage(Point, recPoint);
+    
 
         }
 

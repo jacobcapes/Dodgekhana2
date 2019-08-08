@@ -35,7 +35,6 @@
             this.LblScore = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,8 +75,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startToolStripMenuItem,
-            this.restartToolStripMenuItem});
+            this.startToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(436, 24);
@@ -90,15 +88,8 @@
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
             this.startToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.startToolStripMenuItem.Text = "Start";
+            this.startToolStripMenuItem.Visible = false;
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
-            // 
-            // restartToolStripMenuItem
-            // 
-            this.restartToolStripMenuItem.BackColor = System.Drawing.Color.Orange;
-            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.restartToolStripMenuItem.Text = "Restart";
-            this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -135,6 +126,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.ForeColor = System.Drawing.Color.Black;
             this.textBox1.Location = new System.Drawing.Point(169, 15);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(55, 20);
@@ -144,6 +136,7 @@
             // 
             // LblLives
             // 
+            this.LblLives.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblLives.Location = new System.Drawing.Point(394, 15);
             this.LblLives.Name = "LblLives";
             this.LblLives.Size = new System.Drawing.Size(30, 20);
@@ -185,7 +178,6 @@
         private System.Windows.Forms.Label LblScore;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label4;
