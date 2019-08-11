@@ -16,16 +16,16 @@ namespace Dodgekhana2
     {
         Rectangle recPoint = new Rectangle(0, 0, 50, 65);
         Image Point = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
-        Graphics g; // declare the graphics object
+        Graphics g; 
         Random rand = new Random();
         Random speed = new Random();
-        int X = 20, Y = 20;// starting position of tire
-        int x2 = 50, y2 = 290; // starting position of spaceship
-        // Declare the rectangles to display the spaceship and planets in
+        int X = 20, Y = 20;
+        int x2 = 50, y2 = 290;
+
         Rectangle area, area1, area2, area3, area4, area5, area6, area7;
         int score = 0;
         int lives = 5;
-        // load the spaceship and one planet
+      
         Image Vehicle = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
 
         private void LblLives_Click(object sender, EventArgs e)
@@ -46,19 +46,21 @@ namespace Dodgekhana2
            
            
             LblScore.Text = score.ToString();
-            lives = int.Parse(LblLives.Text);//pass lives entered in textbox to lives variable
+            lives = int.Parse(LblLives.Text);
             TmrTire.Enabled = true;
             TmrVehicle.Enabled = true;
             startToolStripMenuItem.Visible = false;
+            score = 0;
+            LblScore.Text = score.ToString();
             area.Y = 290;
             area.X = 50;
-            area1.Y = 20; //place planet back at top of panel
-            area2.X = 20; //place planet back at top of panel
-            area3.Y = 20; //place planet back at top of panel
-            area4.X = 20; //place planet back at top of panel
-            area5.Y = 20; //place planet back at top of panel
-            area6.X = 20; //place planet back at top of panel
-            area7.Y = 20; //place planet back at top of panel
+            area1.Y = 20; 
+            area2.X = 20; 
+            area3.Y = 20;
+            area4.X = 20;
+            area5.Y = 20;
+            area6.X = 20; 
+            area7.Y = 20; 
         }
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,17 +69,17 @@ namespace Dodgekhana2
             lives = 5;
             LblLives.Text = "5";
             LblScore.Text = score.ToString();
-            lives = int.Parse(LblLives.Text);//pass lives entered in textbox to lives variable
+            lives = int.Parse(LblLives.Text);
             TmrTire.Enabled = true;
             TmrVehicle.Enabled = true;
            
-            area1.Y = 20; //place planet back at top of panel
-            area2.X = 20; //place planet back at top of panel
-            area3.Y = 20; //place planet back at top of panel
-            area4.X = 20; //place planet back at top of panel
-            area5.Y = 20; //place planet back at top of panel
-            area6.X = 20; //place planet back at top of panel
-            area7.Y = 20; //place planet back at top of panel
+            area1.Y = 20; 
+            area2.X = 20;
+            area3.Y = 20;
+            area4.X = 20; 
+            area5.Y = 20; 
+            area6.X = 20; 
+            area7.Y = 20; 
 
 
         }
@@ -94,20 +96,20 @@ namespace Dodgekhana2
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar > 1 && e.KeyChar < 222)//A, B, C or D entered
+            if (e.KeyChar > 1 && e.KeyChar < 222)
             {
 
-                if (e.KeyChar > 12 && e.KeyChar < 14)//A, B, C or D entered
+                if (e.KeyChar > 12 && e.KeyChar < 14)
                 {
-                    textBox1.Enabled = false;//deny access to textbox when program runs
-                    LblLives.Focus();//focus on TxtLives
+                    textBox1.Enabled = false;
+                    LblLives.Focus();
                    
                 }
             }
             else
             {
                 MessageBox.Show("Please enter A, B, C or D Only", "Error");
-                //event handler is set to true, user input is suppressed and not reflected in the text box
+               
                 e.Handled = true;
                 LblLives.Focus();
             }
@@ -117,13 +119,6 @@ namespace Dodgekhana2
         {
             string context = textBox1.Text;
           
-            //for loop checks for letters as characters are entered
-          
-
-            
-
-            // if not a letter clear the textbox and focus on it
-            // to enter name again
             
         }
 
@@ -134,14 +129,14 @@ namespace Dodgekhana2
 
         private void LblLives_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar > 48 && e.KeyChar < 54)// entered 1, 2, 3,4 or 5
+            if (e.KeyChar > 48 && e.KeyChar < 54)
             {
-                LblLives.Enabled = false;// stop player entering lives after game has started
-                startToolStripMenuItem.Enabled = true;//enable player to click Start to strat game
+                LblLives.Enabled = false;
+                startToolStripMenuItem.Enabled = true;
                 startToolStripMenuItem.Visible = true;
 
             }
-            else// didn't enter 1, 2, 3, 4 or 5
+            else
             {
                 MessageBox.Show("Please enter Numbers 1 to 5 only", "Error");
                 e.Handled = true;
@@ -172,7 +167,7 @@ namespace Dodgekhana2
         }
         private void CheckLives()
         {
-            LblLives.Text = lives.ToString();//show lives on form
+            LblLives.Text = lives.ToString();
             if (lives == 0)
             {
                 
@@ -191,21 +186,14 @@ namespace Dodgekhana2
                 {
                     LblLives.Focus();
                 }
-                else
-                {
-                    // Do somethi
-                }
-
             }
         }
 
         private void PnlGame_Paint(object sender, PaintEventArgs e)
         {
-            //get the methods from the graphic's class to paint on the panel
             g = e.Graphics;
-            //use the DrawImage method to draw the spaceship on the panel
             g.DrawImage(Point, recPoint);
-            g.DrawImage(Vehicle, area);//use the DrawImage method to draw the planet on the panel
+            g.DrawImage(Vehicle, area);
             g.DrawImage(Tire, area1);
             g.DrawImage(Tire, area2);
             g.DrawImage(Tire, area3);
@@ -219,7 +207,7 @@ namespace Dodgekhana2
 
         private void TmrTire_Tick(object sender, EventArgs e)
         {
-            area1.Y += speed.Next(3, 9); //move planet1 down the Game panel at a speed between 5 and 10
+            area1.Y += speed.Next(3, 9);
             area2.X += speed.Next(3, 9);
             area3.Y += speed.Next(3, 9);
             area4.X += speed.Next(3, 9);
@@ -230,31 +218,31 @@ namespace Dodgekhana2
 
             if (area1.Y > PnlGame.Height)
             {
-                area1.Y = 0; //place planet back at top of panel
+                area1.Y = -30;
             }
             if (area2.X > PnlGame.Width)
             {
-                area2.X = 0; //place planet back at top of panel
+                area2.X = -30;
             }
             if (area3.Y > PnlGame.Height)
             {
-                area3.Y = 0; //place planet back at top of panel
+                area3.Y = -30;
             }
             if (area4.X > PnlGame.Width)
             {
-                area4.X = 0; //place planet back at top of panel
+                area4.X = -30;
             }
             if (area5.Y > PnlGame.Height)
             {
-                area5.Y = 0; //place planet back at top of panel
+                area5.Y = -30;
             }
             if (area6.X > PnlGame.Width)
             {
-                area6.X = 0; //place planet back at top of panel
+                area6.X = -30; 
             }
             if (area7.Y > PnlGame.Height)
             {
-                area7.Y = 0; //place planet back at top of panel
+                area7.Y = -30;
             }
             if (score >= 5)
             {
@@ -304,19 +292,19 @@ namespace Dodgekhana2
 
         private void TmrVehicle_Tick(object sender, EventArgs e)
         {
-            if (left) //if left arrow pressed
-                if (area.X < -10)//check to see if spaceship is within 10 of left side
+            if (left)
+                if (area.X < -10)
                 {
-                    area.X = 380;//if it is within 10 from side bounce it to 10 away
+                    area.X = 380;
                 }
                 else
                 {
-                    area.X -= 10; //else move 5 to the left
+                    area.X -= 10;
 
                 }
-            if (right) //if right arrow pressed
+            if (right)
             {
-                if (area.X > PnlGame.Width - -10)// is spaceship within 40 of right side of panel
+                if (area.X > PnlGame.Width - -10)
                 {
                     area.X = PnlGame.Width - 380;
                 }
@@ -325,9 +313,9 @@ namespace Dodgekhana2
                     area.X += 10;
                 }
             }
-            if (up) //if right arrow pressed
+            if (up)
             {
-                if (area.Y < PnlGame.Height - 380)// is spaceship within 40 of right side of panel
+                if (area.Y < PnlGame.Height - 380)
                 {
                     area.Y = PnlGame.Height - 10;
                 }
@@ -336,9 +324,9 @@ namespace Dodgekhana2
                     area.Y -= 10;
                 }
             }
-            if (down) //if right arrow pressed
+            if (down)
             {
-                if (area.Y > PnlGame.Height - 10)// is spaceship within 40 of right side of panel
+                if (area.Y > PnlGame.Height - 10)
                 {
                     area.Y = PnlGame.Height - 380;
                 }
@@ -347,56 +335,56 @@ namespace Dodgekhana2
                     area.Y += 10;
                 }
             }
-            //if spaceship collides with any planet lose a life and move plane to the top of the panel
+            
             if (area.IntersectsWith(area1))
             {
-                area1.Y = 0; //move planet to top of panel
-                lives -= 1; // reduce lives by 1
+                area1.Y = -30;
+                lives -= 1;
                 CheckLives();
             }
             if (area.IntersectsWith(area2))
             {
-                area2.X = 0; //move planet to top of panel
-                lives -= 1; // reduce lives by 1
+                area2.X = -30;
+                lives -= 1;
                 CheckLives();
             }
             if (area.IntersectsWith(area3))
             {
-                area3.Y = 0; //move planet to top of panel
-                lives -= 1; // reduce lives by 1
+                area3.Y = -30;
+                lives -= 1;
              
                 CheckLives();
             }
             if (area.IntersectsWith(area4))
             {
-                area4.X = 0; //move planet to top of panel
-                lives -= 1; // reduce lives by 1
+                area4.X = -30;
+                lives -= 1;
 
                 CheckLives();
             }
             if (area.IntersectsWith(area5))
             {
-                area5.Y = 0; //move planet to top of panel
-                lives -= 1; // reduce lives by 1
+                area5.Y = -30;
+                lives -= 1;
       
                 CheckLives();
             }
             if (area.IntersectsWith(area6))
             {
-                lives -= 1; // reduce lives by 1
-                area6.X = 0; //move planet to top of panel
+                lives -= 1;
+                area6.X = -30;
                 CheckLives();
             }
             if (area.IntersectsWith(area7))
             {
-                area7.Y = 0; //move planet to top of panel
-                lives -= 1; // reduce lives by 1
+                area7.Y = -30;
+                lives -= 1;
                 CheckLives();
             }
             if (area.IntersectsWith(recPoint))
             {
-                score += 1; // add 1 to score
-                LblScore.Text = score.ToString();//display score on the form
+                score += 1;
+                LblScore.Text = score.ToString();
                 recPoint.X = rand.Next(240);
                 recPoint.Y = rand.Next(240);
             }
