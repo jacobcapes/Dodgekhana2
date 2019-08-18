@@ -14,25 +14,19 @@ namespace Dodgekhana2
 
     public partial class FrmDodge : Form
     {
-        Rectangle recPoint = new Rectangle(0, 0, 50, 65);
-        Image Point = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
-        Graphics g; 
+        Rectangle recPoint = new Rectangle(0, 0, 50, 65);//Rectangle point start point and perameters
+        Graphics g; //Graphics declaration
         Random rand = new Random();
         Random speed = new Random();
-        int X = 20, Y = 20;
+        int X = 20, Y = 20;//X and Y values
         int x2 = 50, y2 = 290;
-
+        //Declare the rectangles that the point, player and tyres will be
         Rectangle area, area1, area2, area3, area4, area5, area6, area7;
         int score = 0;
         int lives = 5;
-      
+        //Images for the tyres, player and point
+        Image Point = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");//Image for point
         Image Vehicle = Image.FromFile(Application.StartupPath + @"\Vehicle.jpg");
-
-        private void LblLives_Click(object sender, EventArgs e)
-        {
-
-        }
-
         Image Tire = Image.FromFile(Application.StartupPath + @"\Tire.png");
 
         private void stopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,15 +35,15 @@ namespace Dodgekhana2
             TmrVehicle.Enabled = false;
         }
 
-        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)//StartButton
         {
-           
-           
+
+            TmrTire.Interval = 75;
             LblScore.Text = score.ToString();
-            lives = int.Parse(LblLives.Text);
+            lives = int.Parse(LblLives.Text);//pass lives entered in textbox to lives variable
             TmrTire.Enabled = true;
             TmrVehicle.Enabled = true;
-            startToolStripMenuItem.Visible = false;
+            StartButton.Visible = false;
             score = 0;
             LblScore.Text = score.ToString();
             area.Y = 290;
@@ -69,7 +63,7 @@ namespace Dodgekhana2
             lives = 5;
             LblLives.Text = "5";
             LblScore.Text = score.ToString();
-            lives = int.Parse(LblLives.Text);
+            lives = int.Parse(LblLives.Text);//pass lives entered in textbox to lives variable
             TmrTire.Enabled = true;
             TmrVehicle.Enabled = true;
            
@@ -96,30 +90,29 @@ namespace Dodgekhana2
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar > 1 && e.KeyChar < 222)
+            if (e.KeyChar > 95 && e.KeyChar < 124)
             {
-
-                if (e.KeyChar > 12 && e.KeyChar < 14)
-                {
-                    textBox1.Enabled = false;
-                    LblLives.Focus();
-                   
-                }
+             //only display lowercase letters of the alphabet
             }
-            else
+            else//entered a number or character that isnt in the alphabet
             {
-                MessageBox.Show("Please enter A, B, C or D Only", "Error");
-               
+                MessageBox.Show("Please enter letters only", "Error");
                 e.Handled = true;
-                LblLives.Focus();
+                TextName.Focus();//Focus on name textbox
             }
+            if (e.KeyChar > 12 && e.KeyChar < 14)//Enter key pressed
+            {
+                MessageBox.Show("Please enter your lives now between 1 and 5");
+                TextName.Enabled = false;//deny access to name textbox
+                LblLives.Focus();//Focus on lives textbox
+
+            }
+          
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string context = textBox1.Text;
-          
-            
+            string context = TextName.Text;
         }
 
         private void LblLives_TextChanged(object sender, EventArgs e)
@@ -129,19 +122,24 @@ namespace Dodgekhana2
 
         private void LblLives_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar > 48 && e.KeyChar < 54)
+            if (e.KeyChar > 48 && e.KeyChar < 54)//if 1,2,3,4,5 pressed
             {
                 LblLives.Enabled = false;
-                startToolStripMenuItem.Enabled = true;
-                startToolStripMenuItem.Visible = true;
+                StartButton.Enabled = true;//Start button is enabled
+                StartButton.Visible = true;//Start button is visible
 
             }
-            else
+            else//Number not 1,2,3,4,5
             {
                 MessageBox.Show("Please enter Numbers 1 to 5 only", "Error");
                 e.Handled = true;
                 LblLives.Focus();
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
 
         bool left, right, up, down;
@@ -162,15 +160,15 @@ namespace Dodgekhana2
         private void Form1_Load(object sender, EventArgs e)
         {
             MessageBox.Show("Use the arrow keys to move your vehicle. \n Don't get hit by the tyres! \n Every oil can you collect scores a point! \n If a tyre hits your vehicle a life is lost!", "Game Instructions");
-            textBox1.Focus();
+            TextName.Focus();
 
         }
         private void CheckLives()
         {
-            LblLives.Text = lives.ToString();
+            LblLives.Text = lives.ToString();//Show lives on form
             if (lives == 0)
             {
-                
+                //Stop the game and initiate a restart sequence
                 left = false;
                 right = false;
                 up = false;
@@ -207,18 +205,18 @@ namespace Dodgekhana2
 
         private void TmrTire_Tick(object sender, EventArgs e)
         {
-            area1.Y += speed.Next(3, 9);
-            area2.X += speed.Next(3, 9);
+            area1.Y += speed.Next(3, 9);//move tyre down screen at a random speed between 3 and 9
+            area2.X += speed.Next(3, 9);//move tyre across screen at a speed between 3 aqnd 9
             area3.Y += speed.Next(3, 9);
             area4.X += speed.Next(3, 9);
             area5.Y += speed.Next(3, 9);
             area6.X += speed.Next(3, 9);
             area7.Y += speed.Next(3, 9);
-            PnlGame.Invalidate();
+            PnlGame.Invalidate();//Forces panel to redraw and update the images in their new position
 
             if (area1.Y > PnlGame.Height)
             {
-                area1.Y = -30;
+                area1.Y = -30;//Place tyre back to original position
             }
             if (area2.X > PnlGame.Width)
             {
@@ -244,15 +242,15 @@ namespace Dodgekhana2
             {
                 area7.Y = -30;
             }
-            if (score >= 5)
+            if (score >= 5)//If score more than 5 increase the timer speed
             {
                 TmrTire.Interval = 70;
             }
-            if (score >= 7)
+            if (score >= 7)//If score more than 7 increase the timer speed
             {
                 TmrTire.Interval = 65;
             }
-            if (score >= 10)
+            if (score >= 10)//etc
             {
                 TmrTire.Interval = 60;
             }
@@ -336,11 +334,11 @@ namespace Dodgekhana2
                 }
             }
             
-            if (area.IntersectsWith(area1))
+            if (area.IntersectsWith(area1))//If player hits tyre
             {
-                area1.Y = -30;
-                lives -= 1;
-                CheckLives();
+                area1.Y = -30;//Redraw tyre in original position
+                lives -= 1;//lose a life
+                CheckLives();//Run code checklives
             }
             if (area.IntersectsWith(area2))
             {
@@ -381,12 +379,12 @@ namespace Dodgekhana2
                 lives -= 1;
                 CheckLives();
             }
-            if (area.IntersectsWith(recPoint))
+            if (area.IntersectsWith(recPoint))//If player hits point
             {
-                score += 1;
+                score += 1;//Increase score by 1
                 LblScore.Text = score.ToString();
-                recPoint.X = rand.Next(240);
-                recPoint.Y = rand.Next(240);
+                recPoint.X = rand.Next(240);//Move to random X position
+                recPoint.Y = rand.Next(240);//Move to random Y position
             }
         }
 
