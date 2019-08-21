@@ -92,7 +92,7 @@ namespace Dodgekhana2
         {
             if (e.KeyChar > 95 && e.KeyChar < 124)
             {
-             //only display lowercase letters of the alphabet
+                //only display lowercase letters of the alphabet
             }
             else//entered a number or character that isnt in the alphabet
             {
@@ -100,6 +100,7 @@ namespace Dodgekhana2
                 e.Handled = true;
                 TextName.Focus();//Focus on name textbox
             }
+
             if (e.KeyChar > 12 && e.KeyChar < 14)//Enter key pressed
             {
                 MessageBox.Show("Please enter your lives now between 1 and 5");
@@ -107,7 +108,7 @@ namespace Dodgekhana2
                 LblLives.Focus();//Focus on lives textbox
 
             }
-          
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
